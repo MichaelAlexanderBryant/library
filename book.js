@@ -104,9 +104,12 @@ function submitNewBook(event) {
         return alert('Please include book title and author');
     };
     newTitle = document.getElementById("title").value;
+    document.getElementById("title").value = '';
     newAuthor = document.getElementById("author").value;
+    document.getElementById("author").value = '';
     newPages = +document.getElementById("pages").value;
     newRead = document.querySelector("#read").checked;
+    document.querySelector("#read").checked = false;
     console.log(newTitle);
     newBook = new Book(newTitle, newAuthor, newPages, newRead);
     console.table(newBook);
