@@ -25,13 +25,32 @@ const bookshelf = document.getElementById('bookshelf');
 function displayBooks() {
     library_length = myLibrary.length;
     for (let i = 0; i < library_length; i++) {
-        let shelveBook = document.createElement('div');
-        shelveBook.textContent = myLibrary[i].title;
-        bookshelf.appendChild(shelveBook);
+        let bookContainer = document.createElement('div');
+        bookContainer.className = "book-container";
+
+        let bookTitle = document.createElement('div');
+        bookTitle.className = "book-title";
+        bookTitle.textContent = myLibrary[i].title;
+        bookContainer.appendChild(bookTitle);
+
+        let bookAuthor= document.createElement('div');
+        bookAuthor.className = "book-author";
+        bookAuthor.textContent = myLibrary[i].author;
+        bookContainer.appendChild(bookAuthor);
+
+        let bookPages = document.createElement('div');
+        bookPages.className = "book-pages";
+        bookPages.textContent = myLibrary[i].pages + " pages";
+        bookContainer.appendChild(bookPages);
+
+        let bookRead = document.createElement('div');
+        bookRead.className = "book-read";
+        bookRead.textContent = "Book read: "  + myLibrary[i].read;
+        bookContainer.appendChild(bookRead);
+
+        bookshelf.appendChild(bookContainer);
     }
 };
-
-
 
 theHobbit = new Book("The Hobbit", "J.R.R. Tolkien", 295, false);
 addBookToLibrary(theHobbit);
