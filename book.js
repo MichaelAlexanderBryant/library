@@ -1,20 +1,10 @@
 let myLibrary = [];
-let idx;
 
 function Book(title, author, pages, read) {
     this.title = title;
     this.author = author;
     this.pages = pages;
     this.read = read;
-
-    this.info = function() {
-        if (read) {
-            return `${title} by ${author}, ${pages} pages, read`;
-        }
-        else {
-            return `${title} by ${author}, ${pages} pages, not yet read`;
-        };
-    };
 };
 
 function addBookToLibrary(myBook) {
@@ -28,10 +18,21 @@ function removeBookFromLibrary(event) {
             break;
         };
     };
-    idx = myLibrary.indexOf(myBook);
+    let idx = myLibrary.indexOf(myBook);
     myLibrary.splice(idx, 1);
     bookshelf.textContent = '';
     displayBooks();    
+};
+
+function changeReadStatus(event) {
+    for (let i = 0; i < myLibrary.length; i++) {
+        if (("read" + myLibrary[i].title + " " + myLibrary[i].author) == event.target.id) {
+            myBook = myLibrary[i];
+            break;
+        };
+    };
+    let idx = myLibrary.indexOf(myBook);
+    myLibrary[idx].read = !myLibrary[idx].read;
 };
 
 const bookshelf = document.getElementById('bookshelf');
@@ -61,6 +62,7 @@ function displayBooks() {
         bookRead.className = "book-read";
         bookRead.textContent = "Read";
         let readSwitch = document.createElement('input');
+        readSwitch.id = "read" + myLibrary[i].title + " " + myLibrary[i].author;
         readSwitch.className = "bookshelf-checkbox";
         readSwitch.type = "checkbox";
         readSwitch.checked = myLibrary[i].read;
@@ -74,6 +76,9 @@ function displayBooks() {
         bookContainer.appendChild(removeBook);
 
         bookshelf.appendChild(bookContainer);
+
+        let changeReadListener = document.getElementById(readSwitch.id);
+        changeReadListener.addEventListener("click", changeReadStatus);
 
         let removeBookListener = document.getElementById(removeBook.id);
         removeBookListener.addEventListener("click", removeBookFromLibrary);
@@ -90,11 +95,16 @@ submitBook.addEventListener("click", submitNewBook);
 
 function submitNewBook(event) {
     event.preventDefault();
+    if ((document.getElementById("title").value == '') ||  (document.getElementById("author").value == '')) {
+        return alert('Please include book title and author');
+    };
     newTitle = document.getElementById("title").value;
     newAuthor = document.getElementById("author").value;
     newPages = +document.getElementById("pages").value;
     newRead = document.querySelector("#read").checked;
+    console.log(newTitle);
     newBook = new Book(newTitle, newAuthor, newPages, newRead);
+    console.table(newBook);
     addBookToLibrary(newBook);
     bookshelf.textContent = '';
     displayBooks();
