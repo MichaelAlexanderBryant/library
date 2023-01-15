@@ -121,6 +121,9 @@ function submitNewBook(event) {
 };
   
 function cancelNewBook() {
+    document.getElementById("title").value = '';
+    document.getElementById("author").value = '';
+    document.querySelector("#read").checked = false;
     document.getElementById("blank").style.height = "0vh";
     document.getElementById("popupForm").style.display = "none";
   };
