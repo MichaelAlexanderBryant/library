@@ -1,4 +1,5 @@
 let myLibrary = [];
+let idx;
 
 function Book(title, author, pages, read) {
     this.title = title;
@@ -18,6 +19,19 @@ function Book(title, author, pages, read) {
 
 function addBookToLibrary(myBook) {
     myLibrary.push(myBook);
+};
+
+function removeBookFromLibrary(event) {
+    for (let i = 0; i < myLibrary.length; i++) {
+        if ((myLibrary[i].title + " " + myLibrary[i].author) == event.target.id) {
+            myBook = myLibrary[i];
+            break;
+        };
+    };
+    idx = myLibrary.indexOf(myBook);
+    myLibrary.splice(idx, 1);
+    bookshelf.textContent = '';
+    displayBooks();    
 };
 
 const bookshelf = document.getElementById('bookshelf');
@@ -45,37 +59,50 @@ function displayBooks() {
 
         let bookRead = document.createElement('div');
         bookRead.className = "book-read";
-        bookRead.textContent = "Book read: "  + myLibrary[i].read;
+        bookRead.textContent = "Read";
+        let readSwitch = document.createElement('input');
+        readSwitch.className = "bookshelf-checkbox";
+        readSwitch.type = "checkbox";
+        readSwitch.checked = myLibrary[i].read;
+        bookRead.appendChild(readSwitch);
         bookContainer.appendChild(bookRead);
 
+        let removeBook = document.createElement('button');
+        removeBook.id = myLibrary[i].title + " " + myLibrary[i].author;
+        removeBook.className = "remove-book";
+        removeBook.textContent = "Remove";
+        bookContainer.appendChild(removeBook);
+
         bookshelf.appendChild(bookContainer);
+
+        let removeBookListener = document.getElementById(removeBook.id);
+        removeBookListener.addEventListener("click", removeBookFromLibrary);
     }
 };
-
-theHobbit = new Book("The Hobbit", "J.R.R. Tolkien", 295, false);
-addBookToLibrary(theHobbit);
-
-theIdiot = new Book("The Idiot", "Fyodor Dostoevsky", 768, true)
-addBookToLibrary(theIdiot);
-
-theGreatGatsby = new Book("The Great Gatsby", "F. Scott Fitzgerald", 110, true);
-addBookToLibrary(theGreatGatsby);
-
-console.log(myLibrary);
-
-displayBooks();
-
-function newBook() {
-    alert("test");
-}
 
 function openNewBook() {
     document.getElementById("blank").style.height = "100vh";
     document.getElementById("popupForm").style.display = "block";
-    
-  }
-  
-  function cancelNewBook() {
+  };
+
+const submitBook = document.getElementById("submit-button");
+submitBook.addEventListener("click", submitNewBook);
+
+function submitNewBook(event) {
+    event.preventDefault();
+    newTitle = document.getElementById("title").value;
+    newAuthor = document.getElementById("author").value;
+    newPages = +document.getElementById("pages").value;
+    newRead = document.querySelector("#read").checked;
+    newBook = new Book(newTitle, newAuthor, newPages, newRead);
+    addBookToLibrary(newBook);
+    bookshelf.textContent = '';
+    displayBooks();
     document.getElementById("blank").style.height = "0vh";
     document.getElementById("popupForm").style.display = "none";
-  }
+};
+  
+function cancelNewBook() {
+    document.getElementById("blank").style.height = "0vh";
+    document.getElementById("popupForm").style.display = "none";
+  };
