@@ -47,3 +47,46 @@ body {
     padding: 30px;
     border-radius: 10px;
 }
+
+
+.popup-new-book {
+    /* position: relative; */
+    text-align: center;
+    width: 100%;
+  }
+  .formPopup {
+    display: none;
+    position: fixed;
+    left: 50%;
+    top: 10%;
+    transform: translate(-50%, 5%);
+    border: 3px solid #999999;
+    z-index: 9;
+  }
+  .formContainer {
+    display: flex;
+    flex-direction: column;
+    padding: 40px;
+    gap: 10px;
+    max-width: auto;
+    /* padding: 20px; */
+    background-color: #fff;
+  }
+
+  .formContainer .btn {
+    padding: 12px 20px;
+    border: none;
+    background-color: #8ebf42;
+    color: #fff;
+    cursor: pointer;
+    width: 100%;
+    margin-bottom: 15px;
+    opacity: 0.8;
+  }
+  .formContainer .cancel {
+    background-color: #cc0000;
+  }
+  .formContainer .btn:hover,
+  .openButton:hover {
+    opacity: 1;
+  }

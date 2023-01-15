@@ -8,15 +8,41 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
+    <div id="blank"></div>
     <div id="container">
         <div id="header">
-            <span>My Library</span>
+            <span>LIBRARY</span>
         </div>
         <div id="control-panel">
-            <button id="add-book">Add book</button>
+            <button id="add-book" onclick="openNewBook()">NEW BOOK</button>
         </div>
         <div id="bookshelf"></div>
     </div>
+    <div class="popup-new-book">
+        <div class="formPopup" id="popupForm">
+          <form action="" class="formContainer">
+            <h2>Enter new book</h2>
+            <label for="Title">
+                <strong>Title</strong>
+              </label>
+            <input type="text" id="title" name="title" required>
+            <label for="author">
+              <strong>Author</strong>
+            </label>
+            <input type="text" id="author" name="author" required>
+            <label for="pages">
+                <strong>Number of pages</strong>
+              </label>
+              <input type="number" id="pages" name="pages" min=1 value = 1 required>
+              <label for="read">
+                <strong>I have read this book</strong>
+              </label>
+              <input type="checkbox" id="read" name="read" required>
+            <button type="submit" class="btn">Add book</button>
+            <button type="button" class="btn cancel" onclick="cancelNewBook()">Cancel</button>
+          </form>
+        </div>
+      </div>
     <script src="book.js"></script>
 </body>
 </html>
