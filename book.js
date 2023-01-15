@@ -55,7 +55,12 @@ function displayBooks() {
 
         let bookPages = document.createElement('div');
         bookPages.className = "book-pages";
-        bookPages.textContent = myLibrary[i].pages + " pages";
+        if (myLibrary[i].pages == "1"){
+            bookPages.textContent = myLibrary[i].pages + " page";
+        }
+        else {
+            bookPages.textContent = myLibrary[i].pages + " pages";
+        }
         bookContainer.appendChild(bookPages);
 
         let bookRead = document.createElement('div');
