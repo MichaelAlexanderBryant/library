@@ -71,13 +71,11 @@ function newBook() {
 
 function openNewBook() {
     document.getElementById("blank").style.height = "100vh";
-    document.getElementById("blank").style.backgroundColor = "rgba(0,0,0,.5)";
     document.getElementById("popupForm").style.display = "block";
     
   }
   
   function cancelNewBook() {
     document.getElementById("blank").style.height = "0vh";
-    document.getElementById("blank").style.backgroundColor = "rgba(0,0,0,.5)";
     document.getElementById("popupForm").style.display = "none";
   }
