@@ -14,7 +14,7 @@
             <span>LIBRARY</span>
         </div>
         <div id="control-panel">
-            <button id="add-book" onclick="openNewBook()">NEW BOOK</button>
+            <button id="add-book" onclick="theLibrary.registerBook()">NEW BOOK</button>
         </div>
         <div id="bookshelf"></div>
     </div>
@@ -50,7 +50,7 @@
             </div>
             <div id="buttons">
               <button type="submit" id="submit-button" class="btn">Add book</button>
-              <button type="button" class="btn cancel" onclick="cancelNewBook()">Cancel</button>
+              <button type="button" class="btn cancel" onclick="theLibrary.cancelRegistration()">Cancel</button>
             </div>
           </form>
         </div>
