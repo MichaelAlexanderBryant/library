@@ -102,6 +102,7 @@ class Library {
     registerBook() {
         document.getElementById("blank").style.height = "100vh";
         document.getElementById("popupForm").style.display = "block";
+        document.getElementById("container").style.display = "none";
     };
 
     submitBook(event) {
@@ -122,6 +123,7 @@ class Library {
         this.displayBooks();
         document.getElementById("blank").style.height = "0vh";
         document.getElementById("popupForm").style.display = "none";
+        document.getElementById("container").style.display = "block";
     };
 
     cancelRegistration() {
@@ -130,9 +132,35 @@ class Library {
         document.querySelector("#read").checked = false;
         document.getElementById("blank").style.height = "0vh";
         document.getElementById("popupForm").style.display = "none";
+        document.getElementById("container").style.display = "block";
       };
 
 
 };
 
-theLibrary = new Library();
+const theLibrary = new Library();
+
+let titleInput = document.getElementById('title');
+titleInput.addEventListener("input", (event) => {
+    if (titleInput.validity.minlength) {
+        titleInput.setCustomValidity("Please enter a book title.");
+      } else {
+        titleInput.setCustomValidity("");
+      }
+});
+let authorInput = document.getElementById('author');
+authorInput.addEventListener("input", (event) => {
+    if (authorInput.validity.minlength) {
+        authorInput.setCustomValidity("Please enter an author.");
+      } else {
+        authorInput.setCustomValidity("");
+      }
+});
+let pagesInput = document.getElementById('pages');
+pagesInput.addEventListener("input", (event) => {
+    if (pagesInput.validity.rangeUnderflow) {
+        pagesInput.setCustomValidity("Please enter a valid number of pages.");
+      } else {
+        pagesInput.setCustomValidity("");
+      }
+});

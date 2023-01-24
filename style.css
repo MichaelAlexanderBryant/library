@@ -154,3 +154,8 @@ body {
   .openButton:hover {
     opacity: 1;
   }
+
+  input:invalid {
+    border-color: #900;
+    background-color: #fdd;
+  }

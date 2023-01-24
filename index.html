@@ -20,26 +20,27 @@
     </div>
     <div class="popup-new-book">
         <div class="formPopup" id="popupForm">
-          <form action="" class="formContainer">
+
+          <form action="" class="formContainer" novalidate>
             <h1>Enter new book</h1>
             <div id="forms">
               <div id="title-form">
                 <label for="Title">
                     <strong>Title</strong>
                   </label>
-                <input type="text" id="title" name="title" required/>
+                <input type="text" id="title" name="title" minlength=1 required/>
               </div>
               <div id="author-form">
                 <label for="author">
                   <strong>Author</strong>
                 </label>
-                <input type="text" id="author" name="author" required/>
+                <input type="text" id="author" name="author" minlength=1 required/>
               </div>
               <div id="pages-form">
                 <label for="pages">
                     <strong># of pages</strong>
                   </label>
-                  <input type="number" id="pages" name="pages" min=1 value = 1 required/>
+                  <input type="number" id="pages" name="pages" min=1 value=1 required/>
               </div>
               <div id="read-form">
                 <label for="read">
@@ -53,6 +54,7 @@
               <button type="button" class="btn cancel" onclick="theLibrary.cancelRegistration()">Cancel</button>
             </div>
           </form>
+
         </div>
       </div>
     <script src="book.js"></script>
